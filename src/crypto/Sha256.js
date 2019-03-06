@@ -3,7 +3,6 @@
 // © 2016-2018 Fabio Garcia. All rights reserved.
 
 import Debug from '../Debug.js';
-import Buf from '../struct/Buf.js';
 
 // Logical functions
 var   ROTR = (n, x) => (x >>> n) | (x << (32-n)),
@@ -21,9 +20,9 @@ export default class Sha256 {
     return 32;
   }
 
-  static hash(buf) {
-    Debug.valid(buf, Buf);
-    let u16in = new Uint16Array(buf.buffer),
+  static hash(buffer) {
+    Debug.valid(buffer, ArrayBuffer);
+    let u16in = new Uint16Array(buffer),
         msg = String.fromCharCode.apply(null, u16in);
     // constants [§4.2.2]
     const K = [
@@ -97,7 +96,7 @@ export default class Sha256 {
     for (let h=0; h<H.length; h++) {
       H[h] = ('00000000'+H[h].toString(16)).slice(-8);
     }
-    return Buf.fromHex(H.join(''));
+    return H.join('');
   }
 
 };

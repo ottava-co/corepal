@@ -3,6 +3,7 @@
 // © 2016-2018 Fabio Garcia. All rights reserved.
 
 import Debug from '../Debug.js';
+import Sha256 from '../crypto/Sha256.js';
 
 class BaseStore {
 
@@ -16,12 +17,12 @@ class BaseStore {
     this.history = [];
   }
 
-  async cache(buf) {
-    Debug.valid(buf, Buf);
+  async cache(buffer) {
+    Debug.valid(buffer, ArrayBuffer);
     return new Promise((resolve) => {
-      let hash = SHA256.hash(buf),
-          result = await this.define(hash, buf);
-      result && this.history.push(buf);
+      let hash = Sha256.hash(buffer),
+          result = await this.set(hash, buffer);
+      result && this.history.push(buffer);
       resolve(result);
     });
   }
@@ -29,7 +30,7 @@ class BaseStore {
   async set(id, buf) {
     Debug.abstract(
       'Store::define',
-      '<Buf> id',
+      '<string> id',
       '<boolean>'
     );
   }
@@ -37,15 +38,15 @@ class BaseStore {
   async get(id) {
     Debug.abstract(
       'Store::lookup',
-      '<Buf> id',
-      '<Buf>'
+      '<string> id',
+      '<ArrayBuffer>'
     );
   }
 
   async delete(id) {
     Debug.abstract(
       'Store.undefine',
-      '<Buf> id',
+      '<string> id',
       '<boolean>'
     );
   }
