@@ -1,10 +1,10 @@
 /** util **/
-import Debug from './Debug.js';
+import Debug from './shared/Debug.js';
 /** crypto **/
-import Sha256 from './crypto/Sha256.js';
+import Sha256 from './shared/crypto/Sha256.js';
 /** abstractions **/
-import BasePort from './base/BasePort.js';
-import BaseStore from './base/BaseStore.js';
+import BasePort from './shared/base/BasePort.js';
+import BaseStore from './shared/base/BaseStore.js';
 /** implementaions **/
 import WSPort from './platform/web/WSPort.js';
 import LSStore from './platform/web/LSStore.js';
