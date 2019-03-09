@@ -6,14 +6,16 @@ import Sha256 from './shared/crypto/Sha256.js';
 import BasePort from './shared/base/BasePort.js';
 import BaseStore from './shared/base/BaseStore.js';
 /** implementaions **/
-import WSPort from './platform/node/WSPort.js';
-import FSStore from './platform/node/FSStore.js';
+import WSPort from './platform/web/WSPort.js';
+import LSStore from './platform/web/LSStore.js';
 
-let Ottava = {
+let lib = {
   Debug: Debug,
   Sha256: Sha256,
-  Tranport: WSPort,
-  Storage: FSStore
+  BaseStore: BaseStore,
+  Store: LSStore,
+  BasePort: BasePort,
+  Port: WSPort
 };
 
-export default Ottava;
+export default lib;
