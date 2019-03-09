@@ -1,2 +1,2 @@
-# lib
-ottava common lib
+# ottava core pal
+Ottava core platform abstraction layer.
