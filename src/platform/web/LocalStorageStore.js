@@ -1,15 +1,16 @@
 // © 2016-2018 Fabio Garcia. All rights reserved.
 
-//Dependencies
+/** Dependencies **/
 import Debug from 'ottava-debug';
 import Mutable from 'ottava-mutable';
 
-//Asbtraction
-import BaseStore from '../../core/base/BaseStore.js';
+/** Abstraction **/
+import BaseStore from '../../core/BaseStore.js';
 
 const ls = window.localStorage;
 
-class LocalStorageStore extends BaseStore {
+/** Implmentation **/
+export default class LocalStorageStore extends BaseStore {
 
   constructor(prefix) {
     super();

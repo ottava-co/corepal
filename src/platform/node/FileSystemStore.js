@@ -1,14 +1,14 @@
 // © 2016-2018 Fabio Garcia. All rights reserved.
 
+/** Dependencies **/
 import fs from 'fs';
-
-//Dependencies
 import Debug from 'ottava-debug';
 import Mutable from 'ottava-mutable';
 
-//Abstraction
-import BaseStore from '../../core/base/BaseStore.js';
+/** Abstraction **/
+import BaseStore from '../../core/BaseStore.js';
 
+/** Implmentation **/
 class FileSystemStore extends BaseStore {
 
   constructor(root) {
@@ -83,7 +83,7 @@ class FileSystemStore extends BaseStore {
             'FileSystemStore.unset',
             'Unlink file error.', 
             err
-          );
+          );  
           resolve(false);
           return;
         }

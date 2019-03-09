@@ -1,15 +1,16 @@
-// License: Do not view, copy, or transmit without explicit
-// notarized written consent from the author, Fabio Garcia.
 // © 2016-2018 Fabio Garcia. All rights reserved.
 
-import Debug from '../Debug.js';
+/** Dependencies **/
+import Debug from 'ottava-debug';
+import Mutable from 'ottava-mutable';
 
+/** Definition **/
 export default class BaseStore {
 
   static set origin(store) {
-    if(BaseStore.source) {
+    if(BaseStore.source) { 
       Debug.warn(
-        'set BaseStore::`origin',
+        'set BaseStore::origin',
         'BaseStore source origin already defined.',
         BaseStore.source
       );
@@ -19,7 +20,7 @@ export default class BaseStore {
   }
 
   static get origin() {
-    !BaseStore.source && Debug.throw(
+    (!BaseStore.source) && Debug.throw(
       'get BaseStore::origin',
       'BaseStore source origin undefined.',
       BaseStore.source
@@ -38,10 +39,10 @@ export default class BaseStore {
     return BaseStore.origin;
   }
 
-  async checksum(buffer) {
+  async checksum(mutable) {
     Debug.abstract(
       'async BaseStore.checksum',
-      '<ArrayBuffer> buffer',
+      '<Mutable> mutable',
       '<string>'
     );
   }
@@ -50,15 +51,15 @@ export default class BaseStore {
     Debug.abstract(
       'async BaseStore.get',
       '<string> id',
-      '<ArrayBuffer>'
+      '<Mutable>'
     );
   }
 
-  async set(id, buffer) {
+  async set(id, mutable) {
     Debug.abstract(
       'async BaseStore.set',
       '<string> id',
-      '<ArrayBuffer> buffer',
+      '<Mutabler> mutable',
       '<boolean>'
     );
   }

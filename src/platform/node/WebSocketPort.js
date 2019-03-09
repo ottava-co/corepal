@@ -1,10 +1,14 @@
 // © 2016-2018 Fabio Garcia. All rights reserved.
 
+/** Dependencies **/
 import ws from 'ws';
+import Debug from 'ottava-debug';
+import Mutable from 'ottava-mutable';
 
-import Debug from '../../core/Debug.js';
-import BasePort from '../../core/base/BasePort.js';
+/** Abstraction **/
+import BasePort from '../../core/BasePort.js';
 
+/** Implmentation **/
 export default class WebSocketPort extends BasePort {
 
   constructor(socket) {

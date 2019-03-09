@@ -1,8 +1,15 @@
 // © 2016-2018 Fabio Garcia. All rights reserved.
 
-import Debug from '../../core/Debug.js';
-import BasePort from '../../core/base/BasePort.js';
+/** Dependencies **/
+import Debug from 'ottava-debug';
+import Mutable from 'ottava-mutable';
 
+/** Abstraction **/
+import BasePort from '../../core/BasePort.js';
+
+const ws = window.WebSocket;
+
+/** Implmentation **/
 export default class WebSocketPort extends BasePort {
 
   constructor(socket) {
@@ -10,7 +17,7 @@ export default class WebSocketPort extends BasePort {
   }
 
   bind(interface) {
-    Debug.valid(interface, window.WebSocket);
+    Debug.valid(interface, ws);
     interface.onopen = () => this.onopen(); // check lifecycle, may not be invoked.
     interface.onmessage = (msg) => this.onbuffer(msg);
     interface.onclose = () => this.onclose();

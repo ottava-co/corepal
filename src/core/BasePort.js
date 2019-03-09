@@ -1,10 +1,11 @@
-// License: Do not view, copy, or transmit without explicit
-// notarized written consent from the author, Fabio Garcia.
 // © 2016-2018 Fabio Garcia. All rights reserved.
 
-import Debug from '../Debug.js';
+/** Dependencies **/
+import Debug from 'ottava-debug';
+import Mutable from 'ottava-mutable';
 
-export default class BaseConnection {
+/** Definition **/
+export default class BasePort {
 
   constructor(interface, onevent) {
     Debug.valid(onevent, function);
@@ -17,7 +18,9 @@ export default class BaseConnection {
   }
 
   onreceive(buffer) {
-    this.onevent(this, 'receive', buffer);
+    Debug.valid(buffer, ArrayBuffer);
+    let mutable = new Mutable(buffer);
+    this.onevent(this, 'receive', mutable);
   }
 
   onclose() {
@@ -26,7 +29,7 @@ export default class BaseConnection {
 
   onerror(error) {
     Debug.error(
-      'BaseConnection.onerror',
+      'BasePort.onerror',
       'Stream error occurred.',
       error
     );
@@ -35,7 +38,7 @@ export default class BaseConnection {
 
   bind(interface) {
     Debug.abstract(
-      'BaseConnection.bind',
+      'BasePort.bind',
       '<var> interface',
       '<undefined>'
     );
@@ -43,7 +46,7 @@ export default class BaseConnection {
 
   send(buffer) {
     Debug.abstract(
-      'BaseConnection.send',
+      'BasePort.send',
       '<ArrayBuffer> buffer',
       '<undefined>'
     );

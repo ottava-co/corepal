@@ -1,20 +1,21 @@
+// © 2016-2018 Fabio Garcia. All rights reserved.
 
-/** abstractions **/
-import BasePort from './core/base/BasePort.js';
-import BaseStore from './core/base/BaseStore.js';
+/** Dependencies **/
+import FileSystemStore from './platform/web/FileSystemStore.js';
+import WebSocketPort from './platform/web/WebSocketPort.js';
+
+/** Abstractions **/
 import BasePlatform from './core/base/BasePlatform.js';
 
-/** implementaions **/
-import WSPort from './platform/node/WSPort.js';
-import FSStore from './platform/node/FSStore.js';
+/** Implementation **/
+export default class CorePAL extends BasePlatform {
 
-let lib = {
-  Debug: Debug,
-  Sha256: Sha256,
-  BaseStore: BaseStore,
-  Store: FSStore,
-  BasePort: BasePort,
-  Port: WSPort
+  static get PersistentStore() {
+    return LocalStorageStore;
+  }
+
+  static get CommunicationPort() {
+    return WebSocketPort;
+  }
+
 };
-
-export default lib;
